@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bhaktivedanta Mayapur Gurukula</title>
   <link rel="icon" href="https://raw.githubusercontent.com/veeedu/random-photos/refs/heads/main/backdropp2.png" type="image/jpeg">
-  <style>  
+  <style>
     /* General Styles */
     body {
       font-family: 'Arial', sans-serif;
@@ -13,11 +13,13 @@
       padding: 0;
       background: url('https://raw.githubusercontent.com/veeedu/random-photos/refs/heads/main/backdropp2.png') no-repeat center center fixed;
       background-size: cover;
+      background-position: calc(50% - -25px) center; /* Adds a 5-pixel left offset */
       color: #333;
       text-align: center;
+      position: relative; /* Needed for pseudo-elements */
     }
-
-    /* Transparent Overlay */
+  
+    /* Gradient Overlay with 2 cm Black Areas */
     body::before {
       content: '';
       position: fixed;
@@ -25,65 +27,96 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.5); /* White overlay with 50% transparency */
-      z-index: -1;
+      background: linear-gradient(to right, black 2cm, transparent 4cm, transparent calc(100% - 4cm), black calc(100% - 2cm));
+      z-index: 0; /* Place behind content */
+      pointer-events: none; /* Ensure interactivity of content */
     }
-
-    /* Header */
+  
+    /* Content Styling */
+    header, main, footer {
+      position: relative; /* Ensure content is above overlays */
+      z-index: 1; /* Place above overlays */
+    }
+  
     header {
       background: #8b5f00; /* Deep red for a spiritual aesthetic */
       padding: 20px 0;
     }
-
+  
     header h1 {
       color: rgb(226, 202, 121);
       margin: 0;
       font-size: 24px;
     }
-
-    /* Main Section */
+  
     main {
       padding: 40px 20px;
     }
-
+  
     main h2 {
       font-size: 20px;
       margin-bottom: 20px;
-      color: #4b5320; /* Olive green */
+      color: #1d180cef; /* Olive green */
+      font-size: 20px;
     }
-
+  
+    /* New Links Layout */
     .links {
       display: flex;
+      justify-content: space-between; /* Positions the links on both sides */
+      padding: 200px;
+    }
+  
+    /* Left Side */
+    .left-links {
+      display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
     }
-
+  
+    /* Right Side */
+    .right-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  
     .link-item {
-      display: block;
-      margin: 10px 0;
-      padding: 10px 20px;
-      width: 200px;
-      text-align: center;
-      background: #b87904; /* Deep red button */
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
+  display: block;
+  margin: 10px 0;
+  padding: 10px 20px;
+  width: 200px;
+  text-align: center;
+  background: #b87904; /* Deep red button */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s, border 0.3s; /* Added border transition */
+  position: relative; /* Needed for the logo positioning */
+  border: 2px solid #664c03; /* Adding border */
+}
 
-    .link-item:hover {
-      background: #ddb33f; /* Lighter red on hover */
-    }
+.link-item:hover {
+  background: #ddb33f; /* Lighter red on hover */
+  border-color: #8b5f00; /* Change border color on hover */
+}
 
-    /* Footer */
+    /* Social Media Logos */
+    .link-item img {
+      width: 24px; /* Adjust logo size */
+      height: 24px;
+      margin-right: 10px; /* Space between logo and text */
+      vertical-align: middle; /* Align logo vertically with text */
+    }
+  
     footer {
       margin-top: 40px;
       background: #e08905;
       color: white;
       padding: 10px 0;
     }
-
+  
     footer p {
       margin: 0;
       font-size: 14px;
@@ -94,16 +127,32 @@
   <header>
     <div class="logo">
       <h1>Bhaktivedanta Mayapur Gurukula</h1>
+      <h2>Our Social Media Platforms</h2>
     </div>
   </header>
 
   <main>
-    <h2>Our Social Media Platforms</h2>
+    
     <div class="links">
-      <a href="https://iskcongurukul.in/" target="_blank" class="link-item">Official Website</a>
-      <a href="https://www.youtube.com/@BhaktivedantaAcademyMayapur" target="_blank" class="link-item">YouTube Channel</a>
-      <a href="https://www.facebook.com/ba.mayapur/" target="_blank" class="link-item">Facebook Page</a>
-      <a href="https://www.instagram.com/ba_mayapur/" target="_blank" class="link-item">Instagram</a>
+      <div class="left-links">
+        <a href="https://iskcongurukul.in/" target="_blank" class="link-item">
+          <img src="https://raw.githubusercontent.com/veeedu/random-photos/refs/heads/main/unnamed.jpg" alt="ISKCON Logo"> Official Website
+        </a>
+        <a href="https://www.youtube.com/@BhaktivedantaAcademyMayapur" target="_blank" class="link-item">
+          <img src="https://imgs.search.brave.com/yWOzilaCMcAdtXg7y8SzPCxTH0rcgnGqZFEwW2qJM_s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmdt/aW5kLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAxOS8wOC9Z/b3V0dWJlLUxvZ28t/Tm8tQmFja2dyb3Vu/ZC5wbmc" alt="YouTube Logo"> YouTube Channel
+        </a>
+      </div>
+      <div class="right-links">
+        <a href="https://www.facebook.com/ba.mayapur/" target="_blank" class="link-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo"> Facebook Page
+        </a>
+        <a href="https://www.instagram.com/ba_mayapur/" target="_blank" class="link-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo"> Instagram
+        </a>
+      </div>
     </div>
   </main>
 
+ 
+</body>
+</html>
